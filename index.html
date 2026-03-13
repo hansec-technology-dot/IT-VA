@@ -725,7 +725,7 @@
             font-size: 0.95rem;
         }
 		
-		/* ----- SOCIAL PROOF SECTION ----- */
+		/* ----- SOCIAL PROOF SECTION - ENLARGED VERSION ----- */
         .social-proof {
             padding: 80px 0;
             background: linear-gradient(135deg, var(--off-white) 0%, var(--soft-cream) 100%);
@@ -733,37 +733,37 @@
             border-bottom: 1px solid rgba(255, 184, 0, 0.1);
         }
 
-        /* Client Logos Row - FIXED: Removed grayscale */
+        /* Client Logos Row - ENLARGED */
         .logos-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 40px;
+            gap: 50px;
             margin: 50px 0;
         }
 
         .logo-item {
             flex: 0 1 auto;
             transition: all 0.3s ease;
-            /* FIXED: Removed filter: grayscale(100%) and opacity: 0.7 */
-        }
-
-        .logo-item:hover {
-            /* FIXED: Removed filter: grayscale(0) */
-            transform: translateY(-3px);
         }
 
         .client-logo {
-            max-width: 120px;
+            /* ENLARGED from 120px to 180px */
+            max-width: 180px;
+            width: 100%;
             height: auto;
-            border-radius: 8px;
-            /* FIXED: Added default styling */
+            border-radius: 12px;
             border: 2px solid transparent;
             transition: all 0.3s ease;
+            /* Ensure sharp quality */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -ms-interpolation-mode: bicubic;
         }
-        
+
         .client-logo:hover {
+            transform: scale(1.05);
             border-color: var(--primary-yellow);
             box-shadow: var(--shadow-hover);
         }
@@ -773,9 +773,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 60px;
-            margin: 60px 0;
-            padding: 40px 0;
+            gap: 80px;
+            margin: 70px 0;
+            padding: 50px 0;
             background: linear-gradient(135deg, rgba(255, 184, 0, 0.05) 0%, rgba(230, 57, 70, 0.05) 100%);
             border-radius: 20px;
         }
@@ -785,7 +785,7 @@
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 3.5rem; /* Slightly larger */
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
             -webkit-background-clip: text;
@@ -795,88 +795,56 @@
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--warm-gray);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* Trust Badges */
-        .trust-badges {
-            text-align: center;
-            margin: 50px 0 30px;
-        }
-
-        .trust-text {
-            font-size: 1rem;
-            color: var(--warm-gray);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .badges-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .badge-item {
-            transition: all 0.3s ease;
-        }
-
-        .badge-item:hover {
-            transform: scale(1.05);
-        }
-
-        .badge-item img {
-            max-width: 100px;
-            height: auto;
-            border-radius: 5px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .badge-item img:hover {
-            border-color: var(--primary-red);
-        }
-
         /* Mobile Responsive for Social Proof */
+        @media (max-width: 992px) {
+            .client-logo {
+                max-width: 160px; /* Slightly smaller on tablets */
+            }
+        }
+
         @media (max-width: 768px) {
             .logos-row {
-                gap: 20px;
+                gap: 30px;
             }
             
             .logo-item {
-                flex: 0 1 calc(50% - 20px);
+                flex: 0 1 calc(50% - 30px);
                 text-align: center;
             }
             
+            .client-logo {
+                max-width: 140px; /* Smaller on mobile */
+            }
+            
             .stats-row {
-                gap: 30px;
-                padding: 30px 15px;
+                gap: 40px;
+                padding: 40px 20px;
             }
             
             .stat-number {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .badges-row {
-                gap: 15px;
-            }
-            
-            .badge-item img {
-                max-width: 70px;
+            .stat-label {
+                font-size: 1rem;
             }
         }
 
         @media (max-width: 480px) {
+            .client-logo {
+                max-width: 120px; /* Original size on very small phones */
+            }
+            
             .stats-row {
                 flex-direction: column;
-                gap: 20px;
+                gap: 30px;
             }
         }
 
@@ -1266,7 +1234,7 @@
             </div>
         </section>
 		
-		<!-- SOCIAL PROOF SECTION - FIXED -->
+		<!-- SOCIAL PROOF SECTION - ENLARGED -->
         <section class="social-proof">
             <div class="container">
                 <div class="section-header">
@@ -1274,26 +1242,26 @@
                     <p>Join 50+ satisfied clients who've streamlined their operations with my virtual assistant services</p>
                 </div>
                 
-                <!-- Client Logos Row - FIXED: Images will now show in color -->
+                <!-- Client Logos Row - ENLARGED to 180px -->
                 <div class="logos-row">
                     <div class="logo-item">
-                        <img src="calender mgt.png" alt="Calendar Management" class="client-logo" onerror="this.src='https://via.placeholder.com/120x60/FFB800/E63946?text=Calendar'">
+                        <img src="calender mgt.png" alt="Calendar Management" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Calendar'">
                     </div>
                     <div class="logo-item">
-                        <img src="calender managment.png" alt="Email Management" class="client-logo" onerror="this.src='https://via.placeholder.com/120x60/FFB800/E63946?text=Email'">
+                        <img src="calender managment.png" alt="Email Management" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Email'">
                     </div>
                     <div class="logo-item">
-                        <img src="Lead generation.png" alt="Lead Generation" class="client-logo" onerror="this.src='https://via.placeholder.com/120x60/FFB800/E63946?text=Lead+Gen'">
+                        <img src="Lead generation.png" alt="Lead Generation" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Lead+Gen'">
                     </div>
                     <div class="logo-item">
-                        <img src="Social media management.png" alt="Social Media Management" class="client-logo" onerror="this.src='https://via.placeholder.com/120x60/FFB800/E63946?text=Social+Media'">
+                        <img src="Social media management.png" alt="Social Media Management" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Social+Media'">
                     </div>
                     <div class="logo-item">
-                        <img src="worldtime budy.png" alt="Graphic Design" class="client-logo" onerror="this.src='https://via.placeholder.com/120x60/FFB800/E63946?text=Design'">
+                        <img src="worldtime budy.png" alt="WorldTimeBuddy" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=WorldTime'">
                     </div>
                 </div>
                 
-                <!-- Stats / Achievements Row -->
+                <!-- Stats / Achievements Row - ENLARGED -->
                 <div class="stats-row">
                     <div class="stat-item">
                         <div class="stat-number">50+</div>
