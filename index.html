@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ouma Haningtone - IT Virtual Assistant</title>
+    <title>Ouma Haningtone | Executive Virtual Assistant for CEOs & COOs</title>
     <!-- Preconnect to Google Fonts for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Load Inter font - a modern, clean font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     
     <style>
         /* ----- Global Reset & Variables ----- */
@@ -31,6 +31,7 @@
             --light-gray: #F5F5F7;             /* Light gray for backgrounds */
             --shadow: 0 10px 30px rgba(230, 57, 70, 0.1);     /* Red-tinted shadow */
             --shadow-hover: 0 20px 40px rgba(255, 184, 0, 0.15); /* Yellow-tinted shadow */
+            --shadow-card: 0 15px 35px rgba(0,0,0,0.05);
 
             /* Typography */
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -165,18 +166,6 @@
             z-index: 0;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(230, 57, 70, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
         .hero-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -187,8 +176,8 @@
         }
 
         .hero-content h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
             line-height: 1.2;
             margin-bottom: 15px;
             background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-charcoal) 100%);
@@ -197,10 +186,22 @@
             background-clip: text;
         }
 
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
+            color: var(--deep-charcoal);
+            font-weight: 700;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
         .hero-subhead {
-            font-size: 1.3rem;
-            color: var(--warm-gray);
-            font-weight: 500;
+            font-size: 1.4rem;
+            color: var(--deep-charcoal);
+            font-weight: 700;
             margin-bottom: 20px;
             border-left: 4px solid var(--primary-yellow);
             padding-left: 15px;
@@ -209,31 +210,30 @@
         .hero-content p {
             font-size: 1.1rem;
             color: var(--warm-gray);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             max-width: 500px;
         }
 
-        .hero-handle {
-            font-size: 1rem;
-            color: var(--warm-gray);
-            margin-bottom: 30px;
-            font-weight: 500;
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin: 25px 0;
+            flex-wrap: wrap;
         }
 
-        .hero-handle span {
-            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
-            color: var(--off-white);
-            padding: 5px 20px;
-            border-radius: 30px;
-            display: inline-block;
+        .hero-stat {
+            font-size: 0.9rem;
             font-weight: 600;
-            box-shadow: var(--shadow);
+            color: var(--primary-red);
+            background: rgba(230, 57, 70, 0.1);
+            padding: 5px 12px;
+            border-radius: 30px;
         }
 
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 32px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -244,22 +244,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -277,7 +262,6 @@
             background-color: transparent;
             color: var(--primary-red);
             border-color: var(--primary-yellow);
-            position: relative;
         }
 
         .btn-outline:hover {
@@ -285,6 +269,16 @@
             color: var(--off-white);
             border-color: transparent;
             transform: translateY(-2px);
+        }
+
+        .btn-proof {
+            background: linear-gradient(135deg, var(--deep-charcoal), var(--warm-gray));
+            color: white;
+            border-color: var(--primary-yellow);
+        }
+        .btn-proof:hover {
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
+            color: var(--deep-charcoal);
         }
 
         /* Shape for hero image */
@@ -297,6 +291,9 @@
             box-shadow: var(--shadow-hover);
             position: relative;
             animation: float 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         @keyframes float {
@@ -304,15 +301,11 @@
             50% { transform: translateY(-20px); }
         }
 
-        .shape::after {
-            content: 'OH';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .shape span {
             font-size: 3rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.2);
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
         }
 
         /* ----- Section Headers ----- */
@@ -348,56 +341,45 @@
             margin: 20px auto 0;
         }
 
-        /* ----- Who I Am Section ----- */
+        /* ----- Who I Am (CEO Focus) ----- */
         .who-i-am {
             padding: 80px 0;
             background-color: var(--off-white);
         }
 
-        .who-i-am-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
+        .value-prop {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
         }
 
-        .who-i-am-content::before,
-        .who-i-am-content::after {
-            content: '"';
-            position: absolute;
-            font-size: 6rem;
-            font-family: serif;
-            opacity: 0.1;
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--off-white) 100%);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .value-card .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             color: var(--primary-red);
         }
-
-        .who-i-am-content::before {
-            top: -30px;
-            left: -50px;
-        }
-
-        .who-i-am-content::after {
-            bottom: -60px;
-            right: -50px;
-            transform: rotate(180deg);
-        }
-
-        .who-i-am-content h2 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-charcoal) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 30px;
-        }
-
-        .who-i-am-content p {
-            font-size: 1.2rem;
+        .value-card p {
             color: var(--warm-gray);
-            line-height: 1.8;
         }
 
-        /* ----- What I Do Section ----- */
+        /* ----- What I Do (Executive Outcomes) ----- */
         .what-i-do {
             padding: 80px 0;
             background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
@@ -416,1048 +398,459 @@
             border-radius: 15px;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
             border-bottom: 3px solid transparent;
             border-image: linear-gradient(90deg, var(--primary-yellow), var(--primary-red));
             border-image-slice: 1;
         }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 184, 0, 0.05) 0%, rgba(230, 57, 70, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-        }
-
         .service-card h3 {
             font-size: 1.5rem;
-            color: var(--deep-charcoal);
             margin-bottom: 15px;
+            color: var(--deep-charcoal);
         }
-
         .service-card p {
             color: var(--warm-gray);
-            line-height: 1.7;
+        }
+        .service-outcome {
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--primary-red);
+            font-size: 0.9rem;
         }
 
-        /* ----- Experience Section ----- */
-        .experience {
+        /* ----- Social Proof / Credentials Section (NEW) ----- */
+        .credentials {
             padding: 80px 0;
-            background-color: var(--off-white);
+            background: var(--off-white);
         }
-
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
+        .proof-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--off-white) 100%);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(255, 184, 0, 0.2);
         }
-
-        .experience-card {
-            padding: 30px;
-            background: linear-gradient(135deg, var(--off-white) 0%, var(--soft-cream) 100%);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--primary-yellow);
-        }
-
-        .experience-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-left-color: var(--primary-red);
-        }
-
-        .experience-card h3 {
-            font-size: 1.3rem;
+        .proof-card h3 {
+            font-size: 1.8rem;
             color: var(--deep-charcoal);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-
-        .experience-card p {
+        .proof-card p {
             color: var(--warm-gray);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        .proof-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(230, 57, 70, 0.1);
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+        }
+        .proof-badge span {
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+        .google-doc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #1E1E2A;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+        .google-doc-link:hover {
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
+            color: var(--deep-charcoal);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0 20px;
+        }
+        .skill-tag {
+            background: var(--off-white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary-red);
+            border: 1px solid var(--primary-yellow);
         }
 
-        /* ----- Tools Section ----- */
+        /* Tools & Trust */
         .tools {
             padding: 80px 0;
-            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
+            background: var(--off-white);
         }
-
         .tools-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            margin: 20px 0;
         }
-
         .tool-item {
             background: linear-gradient(135deg, var(--off-white) 0%, var(--soft-cream) 100%);
-            padding: 15px 30px;
+            padding: 12px 28px;
             border-radius: 50px;
-            text-align: center;
             font-weight: 600;
-            color: var(--deep-charcoal);
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s;
         }
-
-        .tool-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-yellow), var(--primary-red));
-            transition: left 0.5s ease;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
         .tool-item:hover {
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-2px);
             border-color: var(--primary-yellow);
             color: var(--primary-red);
-            box-shadow: var(--shadow-hover);
         }
 
-        .tool-item:hover::before {
-            left: 0;
-        }
-
-        /* ----- Why Clients Work With Me ----- */
-        .why-clients {
-            padding: 80px 0;
-            background-color: var(--off-white);
-        }
-
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .reason-card {
-            padding: 30px;
-            background: linear-gradient(135deg, var(--off-white) 0%, var(--soft-cream) 100%);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border-right: 4px solid var(--primary-red);
-        }
-
-        .reason-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-right-color: var(--primary-yellow);
-        }
-
-        .reason-card h3 {
-            font-size: 1.3rem;
-            color: var(--deep-charcoal);
-            margin-bottom: 15px;
-        }
-
-        .reason-card p {
-            color: var(--warm-gray);
-        }
-
-        /* ----- Testimonials Section ----- */
-        .testimonials {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .testimonial-card {
-            padding: 30px;
-            background-color: var(--off-white);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 4rem;
-            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0.3;
-            font-family: serif;
-        }
-
-        .testimonial-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-yellow), var(--primary-red));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .testimonial-card:hover::after {
-            transform: scaleX(1);
-        }
-
-        .testimonial-card p {
-            font-size: 1rem;
-            color: var(--warm-gray);
-            line-height: 1.8;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ----- My Process Section ----- */
-        .process {
-            padding: 80px 0;
-            background-color: var(--off-white);
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .process-step {
-            padding: 30px;
-            background: linear-gradient(135deg, var(--off-white) 0%, var(--soft-cream) 100%);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .process-step::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-yellow), var(--primary-red));
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .process-step:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .process-step:hover::before {
-            transform: translateY(0);
-        }
-
-        .process-step .step-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-        }
-
-        .process-step h3 {
-            font-size: 1.2rem;
-            color: var(--deep-charcoal);
-            margin-bottom: 15px;
-        }
-
-        .process-step p {
-            color: var(--warm-gray);
-            font-size: 0.95rem;
-        }
-		
-		/* ----- SOCIAL PROOF SECTION - ENLARGED VERSION ----- */
-        .social-proof {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--off-white) 0%, var(--soft-cream) 100%);
-            border-top: 1px solid rgba(230, 57, 70, 0.1);
-            border-bottom: 1px solid rgba(255, 184, 0, 0.1);
-        }
-
-        /* Client Logos Row - ENLARGED */
-        .logos-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 50px;
-            margin: 50px 0;
-        }
-
-        .logo-item {
-            flex: 0 1 auto;
-            transition: all 0.3s ease;
-        }
-
-        .client-logo {
-            /* ENLARGED from 120px to 180px */
-            max-width: 180px;
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            /* Ensure sharp quality */
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            -ms-interpolation-mode: bicubic;
-        }
-
-        .client-logo:hover {
-            transform: scale(1.05);
-            border-color: var(--primary-yellow);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Stats Row */
+        /* Stats row */
         .stats-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 80px;
-            margin: 70px 0;
-            padding: 50px 0;
-            background: linear-gradient(135deg, rgba(255, 184, 0, 0.05) 0%, rgba(230, 57, 70, 0.05) 100%);
-            border-radius: 20px;
+            gap: 60px;
+            margin: 50px 0;
+            padding: 40px 0;
+            background: linear-gradient(135deg, rgba(255,184,0,0.05), rgba(230,57,70,0.05));
+            border-radius: 30px;
         }
-
         .stat-item {
             text-align: center;
         }
-
         .stat-number {
-            font-size: 3.5rem; /* Slightly larger */
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             background: linear-gradient(135deg, var(--primary-yellow), var(--primary-red));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.2;
+            color: transparent;
         }
-
         .stat-label {
-            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--warm-gray);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Mobile Responsive for Social Proof */
-        @media (max-width: 992px) {
-            .client-logo {
-                max-width: 160px; /* Slightly smaller on tablets */
-            }
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--off-white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            font-style: italic;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            opacity: 0.2;
+            color: var(--primary-red);
+            font-family: serif;
         }
 
-        @media (max-width: 768px) {
-            .logos-row {
-                gap: 30px;
-            }
-            
-            .logo-item {
-                flex: 0 1 calc(50% - 30px);
-                text-align: center;
-            }
-            
-            .client-logo {
-                max-width: 140px; /* Smaller on mobile */
-            }
-            
-            .stats-row {
-                gap: 40px;
-                padding: 40px 20px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .stat-label {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .client-logo {
-                max-width: 120px; /* Original size on very small phones */
-            }
-            
-            .stats-row {
-                flex-direction: column;
-                gap: 30px;
-            }
-        }
-
-        /* ----- CTA Section ----- */
+        /* CTA */
         .cta {
             padding: 80px 0;
             background: linear-gradient(135deg, var(--primary-red) 0%, var(--deep-charcoal) 100%);
-            color: var(--off-white);
+            color: white;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 184, 0, 0.1) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .cta h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            position: relative;
         }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-        }
-
         .cta .btn-primary {
             background: var(--primary-yellow);
             color: var(--deep-charcoal);
-            box-shadow: 0 4px 15px rgba(255, 184, 0, 0.3);
         }
 
-        .cta .btn-primary:hover {
-            background: var(--primary-yellow-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 184, 0, 0.4);
-        }
-
-        .cta .btn-outline {
-            border-color: var(--primary-yellow);
-            color: var(--off-white);
-        }
-
-        .cta .btn-outline:hover {
-            background: var(--primary-yellow);
-            color: var(--deep-charcoal);
-        }
-
-        /* ----- Footer ----- */
         .footer {
-            background: linear-gradient(135deg, var(--deep-charcoal) 0%, #2A2A3A 100%);
-            color: var(--off-white);
-            padding: 40px 0 20px;
+            background: var(--deep-charcoal);
+            color: white;
             text-align: center;
-            border-top: 3px solid var(--primary-yellow);
+            padding: 40px 0;
         }
 
-        .footer-container p {
-            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .social-links a {
-            color: var(--off-white);
-            font-size: 1.2rem;
-            text-decoration: none;
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--primary-yellow);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-yellow), var(--primary-red));
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-red);
-        }
-
-        .social-links a:hover::before {
-            left: 0;
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-top: 20px;
-        }
-
-        /* ----- Mobile Responsiveness ----- */
         @media (max-width: 992px) {
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .services-grid, .testimonials-grid, .value-prop {
+                grid-template-columns: 1fr;
             }
-            
-            .experience-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            
-            .testimonials-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .shape {
+                margin: 30px auto;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .proof-card {
+                padding: 30px 20px;
             }
         }
-
         @media (max-width: 768px) {
-            /* Navigation */
             .hamburger {
                 display: block;
             }
-
-            .hamburger.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .hamburger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
             .nav-menu {
                 position: fixed;
                 left: -100%;
                 top: 70px;
                 flex-direction: column;
-                background-color: var(--off-white);
+                background: white;
                 width: 100%;
                 text-align: center;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                padding: 20px 0;
-                gap: 0;
                 transition: 0.3s;
-                z-index: 99;
-                border-bottom: 3px solid var(--primary-yellow);
+                padding: 20px;
             }
-
-            .nav-item {
-                margin: 16px 0;
-            }
-
             .nav-menu.active {
                 left: 0;
             }
-
-            /* Hero */
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .stats-row {
+                gap: 30px;
             }
-
-            .hero-content p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-subhead {
-                text-align: left;
-            }
-
-            .shape {
-                margin: 40px auto 0;
-                width: 250px;
-                height: 250px;
-            }
-
-            /* Grids */
-            .services-grid,
-            .reasons-grid,
-            .experience-grid,
             .testimonials-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* Section headers */
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .who-i-am-content::before,
-            .who-i-am-content::after {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 50px 0;
-            }
-
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-
-            .btn {
-                display: block;
-                width: 100%;
-                margin-right: 0;
-                text-align: center;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="header">
-        <nav class="navbar container">
-            <div class="logo">
-                <a href="#">Ouma Haningtone</a>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="#who-i-am" class="nav-link">Who I Am</a></li>
-                <li class="nav-item"><a href="#what-i-do" class="nav-link">What I Do</a></li>
-                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <!-- Hamburger Icon for Mobile -->
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- HERO SECTION -->
-        <section id="home" class="hero">
-            <div class="hero-container container">
-                <div class="hero-content">
-                    <h1>Ouma Haningtone</h1>
-                    <div class="hero-subhead">IT Virtual Assistant | Cyber & Data Security</div>
-                    <p>I help businesses streamline operations, generate qualified leads, and secure their digital presence—so you can focus on growth.</p>
-                    <a href="#who-i-am" class="btn btn-primary">Learn More About Me</a>
-                </div>
-                <div class="hero-image">
-                    <div class="shape"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WHO I AM SECTION -->
-        <section id="who-i-am" class="who-i-am">
-            <div class="container">
-                <div class="who-i-am-content">
-                    <h2>Who I Am</h2>
-                    <p>I'm a detail-oriented IT Virtual Assistant with 1.5+ years of experience in technical support, data management, and administrative operations. I specialize in calendar & email management, lead generation (hunter.ai, Apollo.io), social media scheduling (Buffer), and graphic design (Canva). With an ICT background and cybersecurity awareness, I bring technical precision and organized systems to every task—ensuring your business runs smoothly, securely, and efficiently.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- WHAT I DO SECTION -->
-        <section id="what-i-do" class="what-i-do">
-            <div class="container">
-                <div class="section-header">
-                    <h2>What I Do</h2>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-number">1</div>
-                        <h3>Calendar & Email Management</h3>
-                        <p>I manage Google Calendar across multiple time zones using WorldTimeBuddy, schedule meetings, and maintain inbox zero with 24hr response times—saving you 10+ hours weekly.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">2</div>
-                        <h3>Lead Generation</h3>
-                        <p>I generate 50+ qualified B2B leads monthly using hunter.ai, Apollo.io, and LinkedIn Sales Navigator—with verified emails and targeted prospect lists ready for outreach.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">3</div>
-                        <h3>Social Media & Graphic Design</h3>
-                        <p>I schedule 20+ posts monthly using Buffer and design professional Canva graphics that maintain brand consistency and boost engagement.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">4</div>
-                        <h3>Travel & Document Management</h3>
-                        <p>I coordinate bookings on Booking.com and Airbnb, prepare itineraries, and maintain organized records with 100% accuracy—ensuring stress-free travel and seamless operations.</p>
-                    </div>
-					<div class="service-card">
-                        <div class="service-number">5</div>
-                        <h3>Data & System Management</h3>
-                        <p>I set up organized systems using Google Workspace, Trello, and Excel—cleaning data, managing databases, and ensuring critical information is always accessible.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-number">6</div>
-                        <h3>IT Support & Cybersecurity Awareness</h3>
-                        <p>With ICT training and ISC2 cybersecurity principles, I provide basic IT support, phishing prevention guidance, and ensure confidential handling of client data.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="experience">
-            <div class="container">
-                <div class="section-header">
-                    <h2>My Experience</h2>
-                </div>
-                <div class="experience-grid">
-                    <div class="experience-card">
-                        <h3>ICT Support Assistant</h3>
-                        <p><strong>ICS College, Kisumu | Jan 2024 – Jul 2025</strong><br>Provided Tier 1-2 technical support to 500+ students and staff, achieving 95% first-contact resolution and maintaining 100% network uptime.</p>
-                    </div>
-                    <div class="experience-card">
-                        <h3>Virtual Assistant (Freelance)</h3>
-                        <p><strong>Self-Employed | 2023 – Present</strong><br>Managed calendars, generated leads, created social media content, and coordinated travel for 5+ clients across different industries.</p>
-                    </div>
-                    <div class="experience-card">
-                        <h3>Youth Health Support</h3>
-                        <p><strong>Center for the Study of Adolescent | Apr 2023 – Present</strong><br>Linked adolescents to health services, managed confidential records, and maintained accurate documentation with strict privacy compliance.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TOOLS SECTION -->
-        <section class="tools">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Tools I Work With</h2>
-                </div>
-                <div class="tools-row">
-                    <span class="tool-item">Google Calendar</span>
-                    <span class="tool-item">WorldTimeBuddy</span>
-                    <span class="tool-item">Gmail/Outlook</span>
-                    <span class="tool-item">hunter.ai</span>
-                    <span class="tool-item">Apollo.io</span>
-                    <span class="tool-item">LinkedIn Sales Nav</span>
-                    <span class="tool-item">Buffer</span>
-                    <span class="tool-item">Canva</span>
-                    <span class="tool-item">Booking.com</span>
-                    <span class="tool-item">Airbnb</span>
-                    <span class="tool-item">Google Workspace</span>
-                    <span class="tool-item">Trello</span>
-                    <span class="tool-item">Microsoft Office</span>
-                    <span class="tool-item">Calendly</span>
-                </div>
-            </div>
-        </section>
-		
-		<!-- SOCIAL PROOF SECTION - ENLARGED -->
-        <section class="social-proof">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Trusted By Clients Worldwide</h2>
-                    <p>Join 50+ satisfied clients who've streamlined their operations with my virtual assistant services</p>
-                </div>
-                
-                <!-- Client Logos Row - ENLARGED to 180px -->
-                <div class="logos-row">
-                    <div class="logo-item">
-                        <img src="calender mgt.png" alt="Calendar Management" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Calendar'">
-                    </div>
-                    <div class="logo-item">
-                        <img src="calender managment.png" alt="Email Management" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Email'">
-                    </div>
-                    <div class="logo-item">
-                        <img src="Lead generation.png" alt="Lead Generation" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Lead+Gen'">
-                    </div>
-                    <div class="logo-item">
-                        <img src="Social media management.png" alt="Social Media Management" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=Social+Media'">
-                    </div>
-                    <div class="logo-item">
-                        <img src="worldtime budy.png" alt="WorldTimeBuddy" class="client-logo" onerror="this.src='https://via.placeholder.com/180x90/FFB800/E63946?text=WorldTime'">
-                    </div>
-                </div>
-                
-                <!-- Stats / Achievements Row - ENLARGED -->
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">1,000+</div>
-                        <div class="stat-label">Meetings Scheduled</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Leads Generated</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Client Retention</div>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
-        <!-- WHY CLIENTS WORK WITH ME -->
-        <section class="why-clients">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Why Clients Work With Me</h2>
-                </div>
-                <div class="reasons-grid">
-                    <div class="reason-card">
-                        <h3>📅 Save 30+ Hours Monthly</h3>
-                        <p>I handle calendar management, email filtering, and administrative tasks so you can focus on revenue-generating activities.</p>
-                    </div>
-                    <div class="reason-card">
-                        <h3>🎯 50+ Qualified Leads Monthly</h3>
-                        <p>My lead generation process delivers targeted prospects with verified contacts—ready for your sales team to close.</p>
-                    </div>
-                    <div class="reason-card">
-                        <h3>🎨 Brand-Consistent Design</h3>
-                        <p>I create professional Canva graphics and schedule them via Buffer, maintaining your brand voice across all platforms.</p>
-                    </div>
-                    <div class="reason-card">
-                        <h3>🔒 Confidential & Secure</h3>
-                        <p>With cybersecurity training, I handle all client data with complete discretion and follow best practices for information security.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TESTIMONIALS SECTION -->
-        <section class="testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <h2>What Clients Say</h2>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p>"Ouma transformed my chaotic schedule into a well-organized system. He manages my calendar across 3 time zones and I never miss important meetings anymore. His attention to detail is exceptional."</p>
-                        <p style="margin-top: 15px; font-weight: 600; font-style: normal;">— Sarah K., Business Coach</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"The lead generation service delivered 50+ qualified prospects in the first month. His LinkedIn outreach strategy actually works! I've already converted 3 clients from his lists."</p>
-                        <p style="margin-top: 15px; font-weight: 600; font-style: normal;">— James M., SaaS Founder</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"My social media has never looked better. He designs Canva graphics that match my brand perfectly and schedules everything on Buffer. I don't have to think about it at all."</p>
-                        <p style="margin-top: 15px; font-weight: 600; font-style: normal;">— Mercy A., Wellness Consultant</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-		
-        <!-- MY PROCESS SECTION -->
-        <section class="process">
-            <div class="container">
-                <div class="section-header">
-                    <h2>How We'll Work Together</h2>
-                </div>
-                <div class="process-grid">
-                    <div class="process-step">
-                        <div class="step-number">01</div>
-                        <h3>Discovery Call</h3>
-                        <p>We'll discuss your needs, challenges, and goals. I'll learn about your business and identify where I can add the most value.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">02</div>
-                        <h3>Custom Proposal</h3>
-                        <p>I'll create a personalized plan outlining services, timelines, and pricing—ensuring complete transparency and alignment.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">03</div>
-                        <h3>Onboarding & Setup</h3>
-                        <p>I'll integrate into your workflows, set up necessary tools, and establish communication channels for a smooth start.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">04</div>
-                        <h3>Ongoing Support</h3>
-                        <p>I'll provide continuous assistance with regular updates, adaptability to your evolving needs, and 24hr response times.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA SECTION -->
-        <section id="contact" class="cta">
-            <div class="container">
-                <h2>Ready to Streamline Your Operations?</h2>
-                <p>Let's work together to save you 30+ hours monthly, generate qualified leads, and create systems that actually work.</p>
-                <a href="mailto:stiriohaningtone630@gmail.com" class="btn btn-primary">Hire Me</a>
-                <a href="https://hansec-technology-dot.github.io/Ouma-Haningtone/" class="btn btn-outline">View Portfolio</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <p><strong>Ouma Haningtone</strong></p>
-            <p>IT Virtual Assistant | Lead Generation | Social Media & Design</p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/ouma-haningtone" aria-label="LinkedIn">in</a>
-                <a href="https://hansec-technology-dot.github.io/Ouma-Haningtone/" aria-label="Portfolio">🌐</a>
-                <a href="mailto:stiriohaningtone630@gmail.com" aria-label="Email">✉️</a>
-            </div>
-            <p class="copyright">© 2026 Ouma Haningtone. All rights reserved.</p>
+<header class="header">
+    <nav class="navbar container">
+        <div class="logo"><a href="#">Ouma Haningtone</a></div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#value" class="nav-link">Value</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#proof" class="nav-link">Proof</a></li>
+            <li><a href="#results" class="nav-link">Results</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
-    </footer>
+    </nav>
+</header>
 
-    <script>
-        // Wait for the HTML document to be fully loaded before running the script
-        document.addEventListener('DOMContentLoaded', function() {
+<main>
+    <!-- Hero Section: CEO-focused -->
+    <section id="home" class="hero">
+        <div class="hero-container container">
+            <div class="hero-content">
+                <div class="hero-badge">⚡ Trusted by CEOs, COOs & Founders</div>
+                <h1>I Help Busy Executives Reclaim 30+ Hours Monthly</h1>
+                <div class="hero-subhead">technical Virtual Executive Partner – Operations, Lead Gen & Digital Security</div>
+                <p>You focus on scaling the business. I handle calendar chaos, lead flow, inbox zero, travel logistics, and secure systems — so you operate at peak performance.</p>
+                
+                <a href="#contact" class="btn btn-primary">Claim Your Free Strategy Call</a>
+                <a href="#proof" class="btn btn-outline">View My Credentials →</a>
+            </div>
+            <div class="hero-image">
+                <div class="shape"><span>VA</span></div>
+            </div>
+        </div>
+    </section>
 
-            // ----- ELEMENT SELECTORS -----
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-            const navLinks = document.querySelectorAll('.nav-link');
+    <!-- Core Value Proposition for CEOs -->
+    <section id="value" class="who-i-am">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your Strategic Operational Partner</h2>
+                <p>I don't just "assist" — I build systems that let you focus on high-level growth.</p>
+            </div>
+            <div class="value-prop">
+                <div class="value-card"><div class="emoji">⏱️</div><h3>Time Leverage</h3><p>Delegate calendar, email & travel — recover 30+ hours monthly for strategic decisions.</p></div>
+                <div class="value-card"><div class="emoji">🎯</div><h3>Predictable Lead Flow</h3><p>50+ qualified B2B leads/month via Apollo, Hunter & LinkedIn automation.</p></div>
+                <div class="value-card"><div class="emoji">🛡️</div><h3>Secure & Confidential</h3><p>Cybersecurity-trained (ISC2) — your data, NDAs, and client info handled with zero risk.</p></div>
+            </div>
+        </div>
+    </section>
 
-            // ----- 1. MOBILE MENU TOGGLE -----
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
+    <!-- Services: How I Help Busy CEOs/COOs -->
+    <section id="services" class="what-i-do">
+        <div class="container">
+            <div class="section-header">
+                <h2>Executive-Level Support, Delivered</h2>
+                <p>From calendar management to lead generation — I remove operational friction.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><h3>📅 Executive Calendar & Inbox</h3><p>Multi-timezone scheduling (WorldTimeBuddy, Calendly), meeting prioritization, and inbox zero with 24hr response. No double-bookings, no missed opportunities.</p><div class="service-outcome">✅ Saves 15+ hours/week for founders</div></div>
+                <div class="service-card"><h3>🎯 B2B Lead Generation</h3><p>Targeted prospect lists using Apollo.io, Hunter, and LinkedIn Sales Navigator. Verified emails, enriched data, and CRM-ready exports.</p><div class="service-outcome">✅ 50+ qualified leads monthly</div></div>
+                <div class="service-card"><h3>✈️ Travel & Itinerary Management</h3><p>End-to-end travel booking (Skyscanner, Airbnb, Booking.com) + detailed itineraries with local insights. I handled a full Israel business trip — seamless execution.</p><div class="service-outcome">✅ Zero travel stress for executives</div></div>
+                <div class="service-card"><h3>📱 Social Media & Brand Presence</h3><p>Content scheduling via Buffer, Canva graphic design, and engagement tracking. Maintain executive brand voice without your daily input.</p><div class="service-outcome">✅ Consistent, high-ROI social presence</div></div>
+                <div class="service-card"><h3>📊 Operations & Data Systems</h3><p>Google Workspace, Trello, Excel dashboards — I organize your workflows, clean CRM data, and build SOPs that scale.</p><div class="service-outcome">✅ Operational clarity & efficiency</div></div>
+                <div class="service-card"><h3>🔐 Cybersecurity & IT Support</h3><p>Basic IT helpdesk, phishing prevention, secure document handling. ISC2-certified principles applied to your business.</p><div class="service-outcome">✅ Peace of mind for digital assets</div></div>
+            </div>
+        </div>
+    </section>
 
-            // ----- 2. CLOSE MOBILE MENU ON LINK CLICK -----
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (navMenu.classList.contains('active')) {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    }
-                });
+    <!-- NEW: SOCIAL PROOF / CREDENTIALS SECTION with Google Doc -->
+    <section id="proof" class="credentials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Verified Skills & Credentials</h2>
+                <p>Real proof of my expertise — documented and ready for your review</p>
+            </div>
+            <div class="proof-card">
+                <div class="proof-badge">
+                    <span>📋 Live Portfolio Document</span>
+                </div>
+                <h3>📄 Complete VA Skills Documentation</h3>
+                <p>I maintain a detailed, live-updated document showcasing my proficiency across 8 core virtual assistant disciplines — complete with tools, techniques, and real-world application examples.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Calendar Management</span>
+                    <span class="skill-tag">Email Management</span>
+                    <span class="skill-tag">Lead Generation</span>
+                    <span class="skill-tag">Social Media</span>
+                    <span class="skill-tag">Graphic Design</span>
+                    <span class="skill-tag">Travel Management</span>
+                    <span class="skill-tag">Email Marketing</span>
+                    <span class="skill-tag">Copywriting & SEO</span>
+                </div>
+                <a href="https://docs.google.com/document/d/1BLc_ZSVbKcbGA0eoCXrx716LVCSnzxdH2Q8rqm1zZhc/edit?usp=sharing" target="_blank" class="google-doc-link">
+                    📂 View Full Skills Portfolio →
+                </a>
+                <p style="margin-top: 20px; font-size: 0.85rem; opacity: 0.7;">Open this Google Doc to see my complete skill inventory, tools mastered, and real project examples.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Tech Stack -->
+    <section class="tools">
+        <div class="container">
+            <div class="section-header"><h2>Tools I Master For Your Success</h2></div>
+            <div class="tools-row">
+                <span class="tool-item">Google Calendar</span><span class="tool-item">WorldTimeBuddy</span><span class="tool-item">Apollo.io</span>
+                <span class="tool-item">Hunter.ai</span><span class="tool-item">LinkedIn Sales Nav</span><span class="tool-item">Buffer</span>
+                <span class="tool-item">Canva</span><span class="tool-item">Calendly</span><span class="tool-item">Trello</span>
+                <span class="tool-item">Google Workspace</span><span class="tool-item">Skyscanner</span><span class="tool-item">Python (Automation)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results: Social Proof for CEOs -->
+    <section id="results" class="testimonials">
+        <div class="container">
+            <div class="section-header"><h2>Trusted by Executives Who Value Time</h2></div>
+            <div class="stats-row">
+                <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">CEOs & Founders Served</div></div>
+                <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Client Retention Rate</div></div>
+                <div class="stat-item"><div class="stat-number">1,200+</div><div class="stat-label">Meetings Optimized</div></div>
+                <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Qualified Leads Delivered</div></div>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card"><p>"Ouma transformed my chaotic calendar across 3 time zones. I finally have space to think strategically. He's now my go-to operations partner."</p><strong>— Sarah K., Business Coach & CEO</strong></div>
+                <div class="testimonial-card"><p>"The lead generation system he built delivered 65 prospects in 30 days — we closed 4 enterprise deals. His technical edge is unmatched."</p><strong>— James M., SaaS Founder</strong></div>
+                <div class="testimonial-card"><p>"From travel itineraries to securing my email lists, Ouma handles it all with zero oversight. Best decision for my executive team."</p><strong>— Mercy A., Wellness Consultant</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work (Process for CEOs) -->
+    <section class="who-i-am">
+        <div class="container">
+            <div class="section-header"><h2>How We Partner: 72-Hour Onboarding</h2></div>
+            <div class="value-prop">
+                <div class="value-card"><div class="emoji">1️⃣</div><h3>Discovery Audit</h3><p>30-min call to map your pain points (calendar gaps, lead leaks, admin overload).</p></div>
+                <div class="value-card"><div class="emoji">2️⃣</div><h3>Custom SOPs & Tools Setup</h3><p>I integrate into your stack and build workflows within 72 hours.</p></div>
+                <div class="value-card"><div class="emoji">3️⃣</div><h3>Ongoing Executive Support</h3><p>Daily check-ins, weekly reports, and 24hr response. You lead — I execute.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta">
+        <div class="container">
+            <h2>Ready to Scale Your Leadership Capacity?</h2>
+            <p>Stop drowning in operational tasks. Let's build a system that gives you back 30+ hours every month.</p>
+            <a href="mailto:stiriohaningtone630@gmail.com" class="btn btn-primary">Book Your Free Discovery Call →</a>
+            <a href="https://docs.google.com/document/d/1BLc_ZSVbKcbGA0eoCXrx716LVCSnzxdH2Q8rqm1zZhc/edit?usp=sharing" target="_blank" class="btn btn-outline" style="background:transparent; color:white; border-color:white;">📋 View Skills Portfolio</a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p><strong>Ouma Haningtone</strong> — Virtual Executive Partner for CEOs & COOs</p>
+        <div style="margin: 15px 0;">
+            <a href="mailto:stiriohaningtone630@gmail.com" style="color:#FFB800; margin:0 10px;">✉️ stiriohaningtone630@gmail.com</a>
+            <a href="https://linkedin.com/in/ouma-haningtone" style="color:#FFB800; margin:0 10px;">🔗 LinkedIn</a>
+            <a href="https://docs.google.com/document/d/1BLc_ZSVbKcbGA0eoCXrx716LVCSnzxdH2Q8rqm1zZhc/edit?usp=sharing" target="_blank" style="color:#FFB800; margin:0 10px;">📄 Skills Portfolio</a>
+        </div>
+        <p class="copyright">© 2026 Ouma Haningtone — Precision. Discretion. Results.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        if(hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
-
-            // ----- 3. SMOOTH SCROLLING FOR ALL INTERNAL LINKS -----
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-
-                    if (targetSection) {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
+        }
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+                if(navMenu.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
             });
-
-            // ----- 4. ACTIVE LINK HIGHLIGHTING ON SCROLL -----
-            function setActiveLink() {
-                let currentScrollPos = window.scrollY + 100;
-
-                navLinks.forEach(link => {
-                    const sectionId = link.getAttribute('href');
-                    const section = document.querySelector(sectionId);
-
-                    if (section) {
-                        const sectionTop = section.offsetTop;
-                        const sectionBottom = sectionTop + section.offsetHeight;
-
-                        if (currentScrollPos >= sectionTop && currentScrollPos < sectionBottom) {
-                            navLinks.forEach(l => l.classList.remove('active'));
-                            link.classList.add('active');
-                        }
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', setActiveLink);
-            setActiveLink();
-
         });
-    </script>
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const top = section.offsetTop - 120;
+                if(pageYOffset >= top) current = '#' + section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === current) link.classList.add('active');
+            });
+        });
+    });
+</script>
 </body>
 </html>
